@@ -35,3 +35,24 @@ Read the full [Getting Started guide](https://github.com/material-components/mat
 [Material Theming](https://material.io/design/material-theming)
 
 *Built with [Material Starter Kit](https://glitch.com/~material-starter-kit) a file template to get you up and running with Material Components for the Web. Remix it and start theming.*
+
+# app/controllers/sessions_controller.rb
+class SessionsController < ApplicationController
+  # POST /login
+  def create
+    user = User.find_by(email: params[:email])
+
+    if user && user.valid_password?(params[:password])
+      sign_in user
+      render json: { message: 'Logged in successfully', user: user }, status: :ok
+    else
+      render json: { error: 'Invalid email or password' }, status: :unauthorized
+    end
+  end
+
+  # DELETE /logout
+  def destroy
+    sign_out current_user
+    render json: { message: 'Logged out successfully' }, status: :ok
+  end
+end
