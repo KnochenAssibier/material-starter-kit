@@ -56,3 +56,18 @@ class SessionsController < ApplicationController
     render json: { message: 'Logged out successfully' }, status: :ok
   end
 end
+
+# app/controllers/application_controller.rb
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session
+  include Devise::Controllers::Helpers
+end
+
+# config/routes.rb
+Rails.application.routes.draw do
+  # Other routes...
+
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+end
+
