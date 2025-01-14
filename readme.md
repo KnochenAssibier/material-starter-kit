@@ -35,3 +35,4 @@ Read the full [Getting Started guide](https://github.com/material-components/mat
 [Material Theming](https://material.io/design/material-theming)
 
 *Built with [Material Starter Kit](https://glitch.com/~material-starter-kit) a file template to get you up and running with Material Components for the Web. Remix it and start theming.*
+
